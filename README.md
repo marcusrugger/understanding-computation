@@ -1,4 +1,4 @@
-shiny-robot
+Understanding Computation
 ===========
 
 Code I'm writing while reading _Understanding Computation_
