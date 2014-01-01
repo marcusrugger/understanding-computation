@@ -1,5 +1,5 @@
 
-class Number < Struct.new(:value)
+class Boolean < Struct.new(:value)
   
   def to_s
     value.to_s
@@ -14,22 +14,22 @@ class Number < Struct.new(:value)
   end
 
   def as_boolean
-    value != 0
-  end
-
-  def as_number
     value
   end
 
-  def boolean_or(right_side)
-    Boolean.new(as_boolean || right_side.as_boolean)
+  def as_number
+    value ? 1 : 0
   end
 
-  def boolean_and(right_side)
+  def boolean_or(right_side, environment)
+    Boolean.new(as_boolean || right_side.as_boolean)    
+  end
+
+  def boolean_and(term, environment)
     Boolean.new(as_boolean && right_side.as_boolean)
   end
 
-  def boolean_not
+  def boolean_not(environment)
     Boolean.new(!as_boolean)    
   end
 

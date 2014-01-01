@@ -9,7 +9,7 @@ class Variable < Struct.new(:name)
     "<<#{self}>>"
   end
 
-  def assign(environment, obj)
+  def assign(obj, environment)
     environment[name] = obj
   end
 

@@ -1,5 +1,5 @@
 
-class Assignment < Struct.new(:left, :right)
+class Assign < Struct.new(:left, :right)
 
   def to_s
     "#{left} = #{right}"
@@ -11,8 +11,7 @@ class Assignment < Struct.new(:left, :right)
 
   def evaluate(environment)
     result = right.evaluate(environment)
-    left.assign(environment, result)
-    return result;
+    left.assign(result, environment)
   end
 
 end
