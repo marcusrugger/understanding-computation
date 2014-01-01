@@ -8,6 +8,8 @@ require "./multiply"
 require "./do_nothing"
 require "./assign"
 require "./if"
+require "./sequence"
+require "./while"
 
 environment = { x: Number.new(2), y: Number.new(3) }
 
@@ -25,10 +27,9 @@ Machine.new(
 =end
 
 Machine.new(
-  If.new(
-    Variable.new(:x),
-    Assign.new(:y, Number.new(1)),
-    Assign.new(:y, Number.new(2))
+  While.new(
+    LessThan.new(Variable.new(:x), Number.new(5)),
+    Assign.new(:x, Add.new(Variable.new(:x), Number.new(1))),
     ),
-  { x: Boolean.new(false) }
+  { x: Number.new(1) }
   ).run
