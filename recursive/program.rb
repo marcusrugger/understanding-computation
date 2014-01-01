@@ -3,32 +3,29 @@ require "./term.boolean"
 require "./term.number"
 require "./term.variable"
 require "./operator.assign"
+require "./operator.equal"
+require "./operator.less_than"
+require "./operator.greater_than"
 require "./operator.add"
 require "./operator.subtract"
 require "./operator.multiply"
 require "./operator.divide"
-require "./operator.assign"
 require "./statement.do_nothing"
 require "./statement.statement"
+require "./statement.sequence"
 require "./statement.if"
+require "./statement.while"
 
-a = Number.new(2)
-b = Number.new(3)
-c = Number.new(4)
-d = Number.new(5)
+environment = { x: Number.new(0) }
 
-multiply_b_c = Multiply.new(b, c)
+condition_expression = LessThan.new(Variable.new(:x), Number.new(5))
+body_expression = Assign.new(Variable.new(:x), Add.new(Variable.new(:x), Number.new(1)))
+body_statement = Statement.new(body_expression)
+while_statement = While.new(condition_expression, body_statement)
 
-add_a_result = Add.new(a, multiply_b_c)
-add_result_d = Add.new(add_a_result, d)
 
-assign_to_x = Assign.new(Variable.new(:x), add_result_d)
+puts while_statement
 
-statement = Statement.new(assign_to_x)
-
-puts statement
-
-environment = {}
-statement.execute(environment)
-
+puts environment
+while_statement.execute(environment)
 puts environment

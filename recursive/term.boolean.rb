@@ -21,7 +21,11 @@ class Boolean < Struct.new(:value)
     value ? 1 : 0
   end
 
-  def boolean_or(right_side, environment)
+  def assign(right_side, environment)
+    raise 'Assignment operator (=) is not supported by boolean term'
+  end
+
+  def boolean_or(right_side)
     Boolean.new(as_boolean || right_side.as_boolean)    
   end
 
@@ -33,20 +37,32 @@ class Boolean < Struct.new(:value)
     Boolean.new(!as_boolean)    
   end
 
+  def equal(right_side)
+    Boolean.new(as_boolean == right_side.as_boolean)
+  end
+
+  def less_than(right_side)
+    raise 'Less-than operator (<) is not supported by boolean term'
+  end
+
+  def greater_than(right_side)
+    raise 'Greater-than operator (>) is not supported by boolean term'
+  end
+
   def add(right_side)
-    Number.new(as_number + right_side.as_number)
+    raise 'Addition operator (+) is not supported by boolean term'
   end
 
   def subtract(right_side)
-    Number.new(as_number - right_side.as_number)
+    raise 'Subtraction operator (-) is not supported by boolean term'
   end
 
   def multiply(right_side)
-    Number.new(as_number * right_side.as_number)
+    raise 'Multiplication operator (*) is not supported by boolean term'
   end
 
   def divide(right_side)
-    Number.new(as_number / right_side.as_number)
+    raise 'Division operator (/) is not supported by boolean term'
   end
 
 end

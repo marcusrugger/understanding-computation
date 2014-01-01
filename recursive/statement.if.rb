@@ -1,19 +1,18 @@
 
-class If < Struct.new(:condition, :consequence, :alternative)
+class If < Struct.new(:condition, :true_statement, :false_statement)
   def to_s
-    "if (#{condition}) { #{consequence} } else { #{alternative} }"
+    "if (#{condition}) { #{true_statement} } else { #{false_statement} }"
   end
 
   def inspect
-    "<<#{self}"
+    "<<#{self}>>"
   end
 
   def execute(environment)
-    case condition.evaluate(environment)
-    when Boolean.new(true)
-      consequence.execute(environment)
-    when Boolean.new(false)
-      alternative.execute(environment)
+    if condition.evaluate(environment).as_boolean
+      true_statement.execute(environment)
+    else
+      false_statement.execute(environment)
     end
   end
 end
