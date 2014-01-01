@@ -1,6 +1,7 @@
 require "./machine"
 require "./term.boolean"
 require "./term.number"
+require "./term.string"
 require "./term.variable"
 require "./operator.assign"
 require "./operator.equal"
@@ -29,3 +30,12 @@ puts while_statement
 puts environment
 while_statement.execute(environment)
 puts environment
+
+a = SimpleString.new("Hello world")
+b = SimpleString.new("Goodbye")
+
+expression = Add.new(a, b)
+
+c = expression.evaluate({})
+
+puts c
