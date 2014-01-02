@@ -78,5 +78,5 @@ IOperable *ObjectBoolean::dispatch_boolean_and(bool left_side)
 
 IOperable *ObjectBoolean::dispatch_is_equal(bool left_side)
 {
-  return new ObjectBoolean(left_side && to_boolean());
+  return new ObjectBoolean(left_side == to_boolean());
 }
