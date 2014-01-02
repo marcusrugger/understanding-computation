@@ -1,11 +1,11 @@
-#ifndef __OPERATOR_ADD_H__
-#define __OPERATOR_ADD_H__
+#ifndef __OPERATOR_BOOLEAN_OR_H__
+#define __OPERATOR_BOOLEAN_OR_H__
 
 #include <memory>
 #include "interface.evaluable.h"
 
 
-class OperatorAdd : public IEvaluable
+class OperatorBooleanOr : public IEvaluable
 {
 private:
 
@@ -15,7 +15,7 @@ private:
 
 public:
 
-  OperatorAdd(IEvaluable *left, IEvaluable *right);
+  OperatorBooleanOr(IEvaluable *left, IEvaluable *right);
 
 
 public: // IEvaluable
@@ -26,4 +26,4 @@ public: // IEvaluable
 };
 
 
-#endif  // __OPERATOR_ADD_H__
+#endif  // __OPERATOR_BOOLEAN_OR_H__

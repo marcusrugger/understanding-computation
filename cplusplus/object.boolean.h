@@ -5,11 +5,13 @@
 #include "implement.operable.h"
 #include "implement.castable.h"
 #include "interface.evaluable.h"
+#include "interface.object.h"
 
 
 class ObjectBoolean : public ImplementCastable,
                       public ImplementOperable,
-                      public IEvaluable
+                      public IEvaluable,
+                      public IObject
 {
 private:
 
@@ -27,6 +29,11 @@ public:
 
   bool is_false(void)
   { return !_value; }
+
+
+public: // IObject
+
+  virtual std::string to_string(void);
 
 
 public: // IEvaluable

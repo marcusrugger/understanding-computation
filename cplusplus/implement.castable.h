@@ -11,10 +11,10 @@ class ImplementCastable : public ICastable
 public:
 
   virtual ObjectBoolean *as_boolean(void)
-  { throw std::runtime_error("as_boolean is not supported"); }
+  { return (ObjectBoolean *) NULL; }
 
   virtual ObjectInteger *as_integer(void)
-  { throw std::runtime_error("as_integer is not supported"); }
+  { return (ObjectInteger *) NULL; }
 
 };
 
