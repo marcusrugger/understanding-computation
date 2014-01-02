@@ -19,7 +19,7 @@ public:
   { return (ObjectInteger *) NULL; }
 
 
-  /* Operators */
+  /* IOperable operators */
 
   virtual ObjectBoolean *operator_boolean_not(void)
   { throw std::runtime_error("operator_not is not supported"); }
@@ -50,6 +50,62 @@ public:
 
   virtual IOperable *operator_divide(IOperable *right_side)
   { throw std::runtime_error("operator_divide is not supported"); }
+
+
+protected:
+
+  /* bool operators */
+
+  virtual ObjectBoolean *dispatch_boolean_or(bool left_side)
+  { throw std::runtime_error("dispatch_boolean_or is not supported"); }
+
+  virtual ObjectBoolean *dispatch_boolean_and(bool left_side)
+  { throw std::runtime_error("dispatch_boolean_or is not supported"); }
+
+  virtual ObjectBoolean *dispatch_is_equal(bool left_side)
+  { throw std::runtime_error("dispatch_is_equal is not supported"); }
+
+  virtual ObjectBoolean *dispatch_is_less_than(bool left_side)
+  { throw std::runtime_error("dispatch_is_less_than is not supported"); }
+
+  virtual ObjectBoolean *dispatch_is_greater_than(bool left_side)
+  { throw std::runtime_error("dispatch_is_greater_than is not supported"); }
+
+  virtual IOperable *dispatch_add(bool left_side)
+  { throw std::runtime_error("dispatch_add is not supported"); }
+
+  virtual IOperable *dispatch_subtract(bool left_side)
+  { throw std::runtime_error("dispatch_subtract is not supported"); }
+
+  virtual IOperable *dispatch_multiply(bool left_side)
+  { throw std::runtime_error("dispatch_multiply is not supported"); }
+
+  virtual IOperable *dispatch_divide(bool left_side)
+  { throw std::runtime_error("dispatch_divide is not supported"); }
+
+
+  /* integer operators */
+
+  virtual ObjectBoolean *dispatch_is_equal(int left_side)
+  { throw std::runtime_error("dispatch_is_equal is not supported"); }
+
+  virtual ObjectBoolean *dispatch_is_less_than(int left_side)
+  { throw std::runtime_error("dispatch_is_less_than is not supported"); }
+
+  virtual ObjectBoolean *dispatch_is_greater_than(int left_side)
+  { throw std::runtime_error("dispatch_is_greater_than is not supported"); }
+
+  virtual IOperable *dispatch_add(int left_side)
+  { throw std::runtime_error("dispatch_add is not supported"); }
+
+  virtual IOperable *dispatch_subtract(int left_side)
+  { throw std::runtime_error("dispatch_subtract is not supported"); }
+
+  virtual IOperable *dispatch_multiply(int left_side)
+  { throw std::runtime_error("dispatch_multiply is not supported"); }
+
+  virtual IOperable *dispatch_divide(int left_side)
+  { throw std::runtime_error("dispatch_divide is not supported"); }
 
 };
 

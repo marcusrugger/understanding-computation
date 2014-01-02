@@ -52,6 +52,19 @@ public: // IOperable
   virtual IOperable *operator_divide(IOperable *right_side);
 
 
+protected:
+
+  virtual ObjectBoolean *dispatch_boolean_or(bool left_side);
+  virtual ObjectBoolean *dispatch_boolean_and(bool left_side);
+  virtual ObjectBoolean *dispatch_is_equal(int left_side);
+  virtual ObjectBoolean *dispatch_is_less_than(int left_side);
+  virtual ObjectBoolean *dispatch_is_greater_than(int left_side);
+  virtual IOperable *dispatch_add(int left_side);
+  virtual IOperable *dispatch_subtract(int left_side);
+  virtual IOperable *dispatch_multiply(int left_side);
+  virtual IOperable *dispatch_divide(int left_side);
+
+
 };
 
 
