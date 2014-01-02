@@ -3,12 +3,10 @@
 
 
 #include "implement.operable.h"
-#include "implement.castable.h"
 #include "interface.evaluable.h"
 
 
-class ObjectBoolean : public ImplementCastable,
-                      public ImplementOperable,
+class ObjectBoolean : public ImplementOperable,
                       public IEvaluable
 {
 private:
@@ -34,17 +32,12 @@ public: // IEvaluable
   virtual IOperable *evaluate(environment *env);
 
 
-public: // ICastable
-
-  virtual ObjectBoolean *as_boolean(void);
-
-
 public: // IOperable
 
   virtual ObjectBoolean *operator_boolean_not(void);
-  virtual ObjectBoolean *operator_boolean_or(ICastable *right_side);
-  virtual ObjectBoolean *operator_boolean_and(ICastable *right_side);
-  virtual ObjectBoolean *operator_is_equal(ICastable *right_side);
+  virtual ObjectBoolean *operator_boolean_or(IOperable *right_side);
+  virtual ObjectBoolean *operator_boolean_and(IOperable *right_side);
+  virtual ObjectBoolean *operator_is_equal(IOperable *right_side);
 
 
 };

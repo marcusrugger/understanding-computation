@@ -3,13 +3,11 @@
 
 
 #include "implement.operable.h"
-#include "implement.castable.h"
 #include "interface.evaluable.h"
 #include "interface.object.h"
 
 
-class ObjectInteger : public ImplementCastable,
-                      public ImplementOperable,
+class ObjectInteger : public ImplementOperable,
                       public IEvaluable,
                       public IObject
 {
@@ -23,6 +21,13 @@ public:
   ObjectInteger(int value);
   ObjectInteger(ObjectInteger *pObj);
 
+  operator ObjectBoolean *(void);
+
+
+private:
+
+  virtual ObjectBoolean *as_boolean(void);
+
 
 public: // IObject
 
@@ -34,25 +39,19 @@ public: // IEvaluable
   virtual IOperable *evaluate(environment *env);
 
 
-public: // ICastable
-
-  virtual ObjectBoolean *as_boolean(void);
-  virtual ObjectInteger *as_integer(void);
-
-
 public: // IOperable
 
   virtual ObjectBoolean *operator_boolean_not(void);
-  virtual ObjectBoolean *operator_boolean_or(ICastable *right_side);
-  virtual ObjectBoolean *operator_boolean_and(ICastable *right_side);
-  virtual ObjectBoolean *operator_is_equal(ICastable *right_side);
-  virtual ObjectBoolean *operator_is_less_than(ICastable *right_side);
-  virtual ObjectBoolean *operator_is_greater_than(ICastable *right_side);
+  virtual ObjectBoolean *operator_boolean_or(IOperable *right_side);
+  virtual ObjectBoolean *operator_boolean_and(IOperable *right_side);
+  virtual ObjectBoolean *operator_is_equal(IOperable *right_side);
+  virtual ObjectBoolean *operator_is_less_than(IOperable *right_side);
+  virtual ObjectBoolean *operator_is_greater_than(IOperable *right_side);
 
-  virtual IOperable *operator_add(ICastable *right_side);
-  virtual IOperable *operator_subtract(ICastable *right_side);
-  virtual IOperable *operator_multiply(ICastable *right_side);
-  virtual IOperable *operator_divide(ICastable *right_side);
+  virtual IOperable *operator_add(IOperable *right_side);
+  virtual IOperable *operator_subtract(IOperable *right_side);
+  virtual IOperable *operator_multiply(IOperable *right_side);
+  virtual IOperable *operator_divide(IOperable *right_side);
 
 
 };

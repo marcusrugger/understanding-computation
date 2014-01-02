@@ -27,15 +27,15 @@ IOperable *ObjectInteger::evaluate(environment *env)
 }
 
 
-ObjectBoolean *ObjectInteger::as_boolean(void)
+ObjectInteger::operator ObjectBoolean *()
 {
-  return new ObjectBoolean(_value != 0);
+  return as_boolean();
 }
 
 
-ObjectInteger *ObjectInteger::as_integer(void)
+ObjectBoolean *ObjectInteger::as_boolean(void)
 {
-  return new ObjectInteger(this);
+  return new ObjectBoolean(_value != 0);
 }
 
 
@@ -46,64 +46,64 @@ ObjectBoolean *ObjectInteger::operator_boolean_not(void)
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_or(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_boolean_or(IOperable *right_side)
 {
   std::unique_ptr<ObjectBoolean> left(as_boolean());
   return left->operator_boolean_or(right_side);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_and(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_boolean_and(IOperable *right_side)
 {
   std::unique_ptr<ObjectBoolean> left(as_boolean());
   return left->operator_boolean_and(right_side);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_equal(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_equal(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectBoolean(_value == right->_value);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_less_than(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_less_than(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectBoolean(_value < right->_value);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_greater_than(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_greater_than(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectBoolean(_value > right->_value);
 }
 
 
-IOperable *ObjectInteger::operator_add(ICastable *right_side)
+IOperable *ObjectInteger::operator_add(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectInteger(_value + right->_value);
 }
 
 
-IOperable *ObjectInteger::operator_subtract(ICastable *right_side)
+IOperable *ObjectInteger::operator_subtract(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectInteger(_value - right->_value);
 }
 
 
-IOperable *ObjectInteger::operator_multiply(ICastable *right_side)
+IOperable *ObjectInteger::operator_multiply(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectInteger(_value * right->_value);
 }
 
 
-IOperable *ObjectInteger::operator_divide(ICastable *right_side)
+IOperable *ObjectInteger::operator_divide(IOperable *right_side)
 {
-  std::unique_ptr<ObjectInteger> right(right_side->as_integer());
+  std::unique_ptr<ObjectInteger> right(dynamic_cast<ObjectInteger *>(right_side));
   return new ObjectInteger(_value / right->_value);
 }
