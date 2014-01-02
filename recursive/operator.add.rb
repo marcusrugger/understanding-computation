@@ -1,5 +1,5 @@
 
-class Add < Struct.new(:left, :right)
+class OperatorAdd < Struct.new(:left, :right)
   
   def to_s
     "#{left} + #{right}"

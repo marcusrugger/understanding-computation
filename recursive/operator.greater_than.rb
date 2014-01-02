@@ -1,5 +1,5 @@
 
-class GreaterThan < Struct.new(:left, :right)
+class OperatorGreaterThan < Struct.new(:left, :right)
 
   def to_s
     "#{left} > #{right}"

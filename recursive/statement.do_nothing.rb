@@ -1,5 +1,5 @@
 
-class DoNothing
+class StatementDoNothing
   def to_s
     "do-nothing"
   end

@@ -1,5 +1,5 @@
 
-class Sequence < Struct.new(:first, :second)
+class StatementSequence < Struct.new(:first, :second)
   def to_s
     "#{first}; #{second}"
   end

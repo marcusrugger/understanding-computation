@@ -1,5 +1,5 @@
 
-class Variable < Struct.new(:name)
+class TermVariable < Struct.new(:name)
 
   def to_s
     name.to_s

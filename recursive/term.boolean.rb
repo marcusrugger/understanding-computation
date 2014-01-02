@@ -1,5 +1,5 @@
 
-class Boolean < Struct.new(:value)
+class TermBoolean < Struct.new(:value)
   
   def to_s
     value.to_s
@@ -26,19 +26,19 @@ class Boolean < Struct.new(:value)
   end
 
   def boolean_or(right_side)
-    Boolean.new(as_boolean || right_side.as_boolean)    
+    TermBoolean.new(as_boolean || right_side.as_boolean)    
   end
 
   def boolean_and(term, environment)
-    Boolean.new(as_boolean && right_side.as_boolean)
+    TermBoolean.new(as_boolean && right_side.as_boolean)
   end
 
   def boolean_not(environment)
-    Boolean.new(!as_boolean)    
+    TermBoolean.new(!as_boolean)    
   end
 
   def equal(right_side)
-    Boolean.new(as_boolean == right_side.as_boolean)
+    TermBoolean.new(as_boolean == right_side.as_boolean)
   end
 
   def less_than(right_side)

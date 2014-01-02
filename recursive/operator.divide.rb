@@ -1,5 +1,5 @@
 
-class Divide < Struct.new(:left, :right)
+class OperatorDivide < Struct.new(:left, :right)
 
   def to_s
     "#{left} / #{right}"

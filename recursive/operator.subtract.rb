@@ -1,5 +1,5 @@
 
-class Subtract < Struct.new(:left, :right)
+class OperatorSubtract < Struct.new(:left, :right)
 
   def to_s
     "#{left} - #{right}"

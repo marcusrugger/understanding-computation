@@ -1,5 +1,5 @@
 
-class Number < Struct.new(:value)
+class TermNumber < Struct.new(:value)
   
   def to_s
     value.to_s
@@ -26,43 +26,43 @@ class Number < Struct.new(:value)
   end
 
   def boolean_or(right_side)
-    Boolean.new(as_boolean || right_side.as_boolean)
+    TermBoolean.new(as_boolean || right_side.as_boolean)
   end
 
   def boolean_and(right_side)
-    Boolean.new(as_boolean && right_side.as_boolean)
+    TermBoolean.new(as_boolean && right_side.as_boolean)
   end
 
   def boolean_not
-    Boolean.new(!as_boolean)    
+    TermBoolean.new(!as_boolean)    
   end
 
   def equal(right_side)
-    Boolean.new(as_number == right_side.as_number)
+    TermBoolean.new(as_number == right_side.as_number)
   end
 
   def less_than(right_side)
-    Boolean.new(as_number < right_side.as_number)
+    TermBoolean.new(as_number < right_side.as_number)
   end
 
   def greater_than(right_side)
-    Boolean.new(as_number > right_side.as_number)
+    TermBoolean.new(as_number > right_side.as_number)
   end
 
   def add(right_side)
-    Number.new(as_number + right_side.as_number)
+    TermNumber.new(as_number + right_side.as_number)
   end
 
   def subtract(right_side)
-    Number.new(as_number - right_side.as_number)
+    TermNumber.new(as_number - right_side.as_number)
   end
 
   def multiply(right_side)
-    Number.new(as_number * right_side.as_number)
+    TermNumber.new(as_number * right_side.as_number)
   end
 
   def divide(right_side)
-    Number.new(as_number / right_side.as_number)
+    TermNumber.new(as_number / right_side.as_number)
   end
 
 end

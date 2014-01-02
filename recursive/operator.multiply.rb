@@ -1,5 +1,5 @@
 
-class Multiply < Struct.new(:left, :right)
+class OperatorMultiply < Struct.new(:left, :right)
 
   def to_s
     "#{left} * #{right}"

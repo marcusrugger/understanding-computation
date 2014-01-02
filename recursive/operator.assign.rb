@@ -1,5 +1,5 @@
 
-class Assign < Struct.new(:left, :right)
+class OperatorAssign < Struct.new(:left, :right)
 
   def to_s
     "#{left} = #{right}"

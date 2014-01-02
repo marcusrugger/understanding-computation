@@ -1,5 +1,5 @@
 
-class While < Struct.new(:condition, :body)
+class StatementWhile < Struct.new(:condition, :body)
   def to_s
     "while (#{condition}) { #{body} }"
   end

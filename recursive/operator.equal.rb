@@ -1,5 +1,5 @@
 
-class Equal < Struct.new(:left, :right)
+class OperatorEqual < Struct.new(:left, :right)
 
   def to_s
     "#{left} == #{right}"

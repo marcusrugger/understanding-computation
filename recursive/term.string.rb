@@ -1,5 +1,5 @@
 
-class SimpleString < Struct.new(:string)
+class TermString < Struct.new(:string)
   
   def to_s
     string
@@ -42,19 +42,19 @@ class SimpleString < Struct.new(:string)
   end
 
   def equal(right_side)
-    Boolean.new(as_string.eql?(right_side.as_string))
+    TermBoolean.new(as_string.eql?(right_side.as_string))
   end
 
   def less_than(right_side)
-    Boolean.new((as_string <=> right_side.as_string) < 0)
+    TermBoolean.new((as_string <=> right_side.as_string) < 0)
   end
 
   def greater_than(right_side)
-    Boolean.new((as_string <=> right_side.as_string) > 0)
+    TermBoolean.new((as_string <=> right_side.as_string) > 0)
   end
 
   def add(right_side)
-    as_string + right_side.as_string
+    TermString.new(as_string + right_side.as_string)
   end
 
   def subtract(right_side)
