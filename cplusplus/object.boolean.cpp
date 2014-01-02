@@ -33,20 +33,20 @@ ObjectBoolean *ObjectBoolean::operator_boolean_not(void)
 
 ObjectBoolean *ObjectBoolean::operator_boolean_or(ICastable *right_side)
 {
-  std::auto_ptr<ObjectBoolean> right(right_side->as_boolean());
+  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
   return new ObjectBoolean(_value || right->_value);
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_boolean_and(ICastable *right_side)
 {
-  std::auto_ptr<ObjectBoolean> right(right_side->as_boolean());
+  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
   return new ObjectBoolean(_value && right->_value);
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_is_equal(ICastable *right_side)
 {
-  std::auto_ptr<ObjectBoolean> right(right_side->as_boolean());
+  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
   return new ObjectBoolean(_value == right->_value);
 }
