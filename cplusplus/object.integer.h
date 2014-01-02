@@ -21,12 +21,12 @@ public:
   ObjectInteger(int value);
   ObjectInteger(ObjectInteger *pObj);
 
-  operator ObjectBoolean *(void);
+  operator ObjectBoolean *(void) const;
 
 
 private:
 
-  virtual ObjectBoolean *as_boolean(void);
+  virtual ObjectBoolean *as_boolean(void) const;
 
 
 public: // IObject

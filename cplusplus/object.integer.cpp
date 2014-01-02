@@ -36,14 +36,14 @@ IOperable *ObjectInteger::evaluate(environment *env)
 }
 
 
-ObjectInteger::operator ObjectBoolean *(void)
+ObjectInteger::operator ObjectBoolean *(void) const
 {
   printf("We are in ObjectInteger::operator ObjectBoolean *\n");
-  return as_boolean();
+  return new ObjectBoolean(_value != 0);
 }
 
 
-ObjectBoolean *ObjectInteger::as_boolean(void)
+ObjectBoolean *ObjectInteger::as_boolean(void) const
 {
   return new ObjectBoolean(_value != 0);
 }
