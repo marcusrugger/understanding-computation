@@ -38,6 +38,7 @@ IOperable *ObjectInteger::evaluate(environment *env)
 
 ObjectInteger::operator ObjectBoolean *(void)
 {
+  printf("We are in ObjectInteger::operator ObjectBoolean *\n");
   return as_boolean();
 }
 

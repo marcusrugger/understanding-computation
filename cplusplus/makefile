@@ -4,6 +4,7 @@ CFLAGS=-c -O3 -std=c++11
 LDFLAGS=-lncurses
 
 SOURCES=	program.cpp								\
+					operator.boolean_or.cpp		\
 					operator.add.cpp					\
 					object.boolean.cpp				\
 					object.integer.cpp
