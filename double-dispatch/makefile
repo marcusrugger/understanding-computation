@@ -3,30 +3,33 @@ CC=g++
 CFLAGS=-c -O3 -std=c++11
 LDFLAGS=-lncurses
 
-SOURCES=	program.cpp										\
+TEST_EXPRESSIONS=test.expressions
+
+LIBRARY=	object.boolean.cpp						\
+					object.integer.cpp						\
 					operator.boolean_or.cpp				\
 					operator.boolean_and.cpp			\
 					operator.is_equal.cpp					\
 					operator.is_less_than.cpp			\
 					operator.is_greater_than.cpp	\
-					operator.add.cpp							\
-					object.boolean.cpp						\
-					object.integer.cpp
+					operator.add.cpp
 
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=program
+TEST_EXPRESSIONS_SOURCES =	$(TEST_EXPRESSIONS).cpp	\
+														$(LIBRARY)
+
+TEST_EXPRESSIONS_OBJECTS=$(TEST_EXPRESSIONS_SOURCES:.cpp=.o)
 
 
-all: $(SOURCES) $(EXECUTABLE)
+all: $(TEST_EXPRESSIONS)
 
 
 clean:
 	rm *.o
-	rm $(EXECUTABLE)
+	rm $(TEST_EXPRESSIONS)
 
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+$(TEST_EXPRESSIONS): $(TEST_EXPRESSIONS_OBJECTS)
+	$(CC) $(TEST_EXPRESSIONS_OBJECTS) $(LDFLAGS) -o $@
 
 
 .cpp.o:
