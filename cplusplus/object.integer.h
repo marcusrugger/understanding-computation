@@ -27,6 +27,8 @@ public:
 public: // IObject
 
   virtual std::string to_string(void);
+  virtual bool to_boolean(void);
+  virtual int to_integer(void);
 
 
 public: // IEvaluable

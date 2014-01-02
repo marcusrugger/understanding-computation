@@ -20,6 +20,18 @@ std::string ObjectBoolean::to_string(void)
 }
 
 
+bool ObjectBoolean::to_boolean(void)
+{
+  return _value;
+}
+
+
+int ObjectBoolean::to_integer(void)
+{
+  return 0;
+}
+
+
 IOperable *ObjectBoolean::evaluate(environment *env)
 {
   return new ObjectBoolean(this);

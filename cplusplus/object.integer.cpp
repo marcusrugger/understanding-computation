@@ -21,6 +21,18 @@ std::string ObjectInteger::to_string(void)
 }
 
 
+bool ObjectInteger::to_boolean(void)
+{
+  return _value != 0;
+}
+
+
+int ObjectInteger::to_integer(void)
+{
+  return _value;
+}
+
+
 IOperable *ObjectInteger::evaluate(environment *env)
 {
   return new ObjectInteger(this);
@@ -29,7 +41,7 @@ IOperable *ObjectInteger::evaluate(environment *env)
 
 ObjectBoolean *ObjectInteger::as_boolean(void)
 {
-  return new ObjectBoolean(_value != 0);
+  return new ObjectBoolean(to_boolean());
 }
 
 

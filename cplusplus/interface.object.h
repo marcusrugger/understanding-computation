@@ -11,6 +11,8 @@ public:
   virtual ~IObject(void) {}
 
   virtual std::string to_string(void) = 0;
+  virtual bool to_boolean(void) = 0;
+  virtual int to_integer(void) = 0;
 
 };
 
