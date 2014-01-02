@@ -38,25 +38,25 @@ ObjectBoolean *ObjectBoolean::as_boolean(void)
 }
 
 
-ObjectBoolean *ObjectBoolean::operator_boolean_not(void)
+IOperable *ObjectBoolean::operator_boolean_not(void)
 {
   return new ObjectBoolean(!_value);
 }
 
 
-ObjectBoolean *ObjectBoolean::operator_boolean_or(IOperable *right_side)
+IOperable *ObjectBoolean::operator_boolean_or(IOperable *right_side)
 {
   return right_side->dispatch_boolean_or(to_boolean());
 }
 
 
-ObjectBoolean *ObjectBoolean::operator_boolean_and(IOperable *right_side)
+IOperable *ObjectBoolean::operator_boolean_and(IOperable *right_side)
 {
   return right_side->dispatch_boolean_and(to_boolean());
 }
 
 
-ObjectBoolean *ObjectBoolean::operator_is_equal(IOperable *right_side)
+IOperable *ObjectBoolean::operator_is_equal(IOperable *right_side)
 {
   return right_side->dispatch_is_equal(to_boolean());
 }
@@ -64,19 +64,19 @@ ObjectBoolean *ObjectBoolean::operator_is_equal(IOperable *right_side)
 
 /* dispatchers */
 
-ObjectBoolean *ObjectBoolean::dispatch_boolean_or(bool left_side)
+IOperable *ObjectBoolean::dispatch_boolean_or(bool left_side)
 {
   return new ObjectBoolean(left_side || to_boolean());
 }
 
 
-ObjectBoolean *ObjectBoolean::dispatch_boolean_and(bool left_side)
+IOperable *ObjectBoolean::dispatch_boolean_and(bool left_side)
 {
   return new ObjectBoolean(left_side && to_boolean());
 }
 
 
-ObjectBoolean *ObjectBoolean::dispatch_is_equal(bool left_side)
+IOperable *ObjectBoolean::dispatch_is_equal(bool left_side)
 {
   return new ObjectBoolean(left_side && to_boolean());
 }

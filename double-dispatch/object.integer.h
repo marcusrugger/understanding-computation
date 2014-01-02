@@ -34,12 +34,12 @@ public: // IOperable
   virtual ObjectBoolean *as_boolean(void);
   virtual ObjectInteger *as_integer(void);
 
-  virtual ObjectBoolean *operator_boolean_not(void);
-  virtual ObjectBoolean *operator_boolean_or(IOperable *right_side);
-  virtual ObjectBoolean *operator_boolean_and(IOperable *right_side);
-  virtual ObjectBoolean *operator_is_equal(IOperable *right_side);
-  virtual ObjectBoolean *operator_is_less_than(IOperable *right_side);
-  virtual ObjectBoolean *operator_is_greater_than(IOperable *right_side);
+  virtual IOperable *operator_boolean_not(void);
+  virtual IOperable *operator_boolean_or(IOperable *right_side);
+  virtual IOperable *operator_boolean_and(IOperable *right_side);
+  virtual IOperable *operator_is_equal(IOperable *right_side);
+  virtual IOperable *operator_is_less_than(IOperable *right_side);
+  virtual IOperable *operator_is_greater_than(IOperable *right_side);
 
   virtual IOperable *operator_add(IOperable *right_side);
   virtual IOperable *operator_subtract(IOperable *right_side);
@@ -49,11 +49,11 @@ public: // IOperable
 
 protected:
 
-  virtual ObjectBoolean *dispatch_boolean_or(bool left_side);
-  virtual ObjectBoolean *dispatch_boolean_and(bool left_side);
-  virtual ObjectBoolean *dispatch_is_equal(int left_side);
-  virtual ObjectBoolean *dispatch_is_less_than(int left_side);
-  virtual ObjectBoolean *dispatch_is_greater_than(int left_side);
+  virtual IOperable *dispatch_boolean_or(bool left_side);
+  virtual IOperable *dispatch_boolean_and(bool left_side);
+  virtual IOperable *dispatch_is_equal(int left_side);
+  virtual IOperable *dispatch_is_less_than(int left_side);
+  virtual IOperable *dispatch_is_greater_than(int left_side);
   virtual IOperable *dispatch_add(int left_side);
   virtual IOperable *dispatch_subtract(int left_side);
   virtual IOperable *dispatch_multiply(int left_side);

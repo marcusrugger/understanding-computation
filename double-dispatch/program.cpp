@@ -9,6 +9,7 @@
 #include "object.boolean.h"
 #include "object.integer.h"
 #include "operator.boolean_or.h"
+#include "operator.boolean_and.h"
 #include "operator.add.h"
 
 
@@ -54,10 +55,9 @@ int test_add_with_integers(int x, int y)
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
-
   std::unique_ptr<IEvaluable> expression(new OperatorAdd(x_value.release(), y_value.release()));
-
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
   return result->to_integer();
 }
 
@@ -68,10 +68,9 @@ bool test_boolean_or(bool x, bool y)
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
-
   std::unique_ptr<IEvaluable> expression(new OperatorBooleanOr(x_value.release(), y_value.release()));
-
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
   return result->to_boolean();
 }
 
@@ -82,10 +81,35 @@ bool test_boolean_or_with_integers(int x, int y)
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
-
   std::unique_ptr<IEvaluable> expression(new OperatorBooleanOr(x_value.release(), y_value.release()));
-
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_boolean();
+}
+
+
+bool test_boolean_and(bool x, bool y)
+{
+  IEvaluable::environment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
+  std::unique_ptr<IEvaluable> expression(new OperatorBooleanAnd(x_value.release(), y_value.release()));
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_boolean();
+}
+
+
+bool test_boolean_and_with_integers(int x, int y)
+{
+  IEvaluable::environment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
+  std::unique_ptr<IEvaluable> expression(new OperatorBooleanAnd(x_value.release(), y_value.release()));
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
   return result->to_boolean();
 }
 
@@ -108,6 +132,16 @@ int main(int argc, char **argv)
   should_eq(test_boolean_or_with_integers(0, 5), true, "boolean or with integers (0, 5)");
   should_eq(test_boolean_or_with_integers(3, 0), true, "boolean or with integers (3, 0)");
   should_eq(test_boolean_or_with_integers(3, 5), true, "boolean or with integers (3, 5)");
+
+  should_eq(test_boolean_and(false, false), false, "boolean or (false, false)");
+  should_eq(test_boolean_and(false, true), false, "boolean or (false, true)");
+  should_eq(test_boolean_and(true, false), false, "boolean or (true, false)");
+  should_eq(test_boolean_and(true, true), true, "boolean or (true, true)");
+
+  should_eq(test_boolean_and_with_integers(0, 0), false, "boolean or with integers (0, 0)");
+  should_eq(test_boolean_and_with_integers(0, 5), false, "boolean or with integers (0, 5)");
+  should_eq(test_boolean_and_with_integers(3, 0), false, "boolean or with integers (3, 0)");
+  should_eq(test_boolean_and_with_integers(3, 5), true, "boolean or with integers (3, 5)");
 
   printf("Goodbye cruel world.\n");
 }

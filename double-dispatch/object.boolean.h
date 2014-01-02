@@ -39,17 +39,17 @@ public: // IOperable
 
   virtual ObjectBoolean *as_boolean(void);
 
-  virtual ObjectBoolean *operator_boolean_not(void);
-  virtual ObjectBoolean *operator_boolean_or(IOperable *right_side);
-  virtual ObjectBoolean *operator_boolean_and(IOperable *right_side);
-  virtual ObjectBoolean *operator_is_equal(IOperable *right_side);
+  virtual IOperable *operator_boolean_not(void);
+  virtual IOperable *operator_boolean_or(IOperable *right_side);
+  virtual IOperable *operator_boolean_and(IOperable *right_side);
+  virtual IOperable *operator_is_equal(IOperable *right_side);
 
 
 protected:  // IOperable dispatchers
 
-  virtual ObjectBoolean *dispatch_boolean_or(bool left_side);
-  virtual ObjectBoolean *dispatch_boolean_and(bool left_side);
-  virtual ObjectBoolean *dispatch_is_equal(bool left_side);
+  virtual IOperable *dispatch_boolean_or(bool left_side);
+  virtual IOperable *dispatch_boolean_and(bool left_side);
+  virtual IOperable *dispatch_is_equal(bool left_side);
 
 
 };

@@ -51,38 +51,38 @@ ObjectInteger *ObjectInteger::as_integer(void)
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_not(void)
+IOperable *ObjectInteger::operator_boolean_not(void)
 {
   std::unique_ptr<ObjectBoolean> operand(as_boolean());
   return operand->operator_boolean_not();
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_or(IOperable *right_side)
+IOperable *ObjectInteger::operator_boolean_or(IOperable *right_side)
 {
   return right_side->dispatch_boolean_or(to_boolean());
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_and(IOperable *right_side)
+IOperable *ObjectInteger::operator_boolean_and(IOperable *right_side)
 {
   return right_side->dispatch_boolean_and(to_boolean());
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_equal(IOperable *right_side)
+IOperable *ObjectInteger::operator_is_equal(IOperable *right_side)
 {
   return right_side->dispatch_is_equal(to_integer());
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_less_than(IOperable *right_side)
+IOperable *ObjectInteger::operator_is_less_than(IOperable *right_side)
 {
   return right_side->dispatch_is_less_than(to_integer());
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_greater_than(IOperable *right_side)
+IOperable *ObjectInteger::operator_is_greater_than(IOperable *right_side)
 {
   return right_side->dispatch_is_greater_than(to_integer());
 }
@@ -114,31 +114,31 @@ IOperable *ObjectInteger::operator_divide(IOperable *right_side)
 
 /* dispatchers */
 
-ObjectBoolean *ObjectInteger::dispatch_boolean_or(bool left_side)
+IOperable *ObjectInteger::dispatch_boolean_or(bool left_side)
 {
   return new ObjectBoolean(left_side || to_boolean());
 }
 
 
-ObjectBoolean *ObjectInteger::dispatch_boolean_and(bool left_side)
+IOperable *ObjectInteger::dispatch_boolean_and(bool left_side)
 {
   return new ObjectBoolean(left_side && to_boolean());
 }
 
 
-ObjectBoolean *ObjectInteger::dispatch_is_equal(int left_side)
+IOperable *ObjectInteger::dispatch_is_equal(int left_side)
 {
   return new ObjectBoolean(left_side == to_integer());
 }
 
 
-ObjectBoolean *ObjectInteger::dispatch_is_less_than(int left_side)
+IOperable *ObjectInteger::dispatch_is_less_than(int left_side)
 {
   return new ObjectBoolean(left_side < to_integer());
 }
 
 
-ObjectBoolean *ObjectInteger::dispatch_is_greater_than(int left_side)
+IOperable *ObjectInteger::dispatch_is_greater_than(int left_side)
 {
   return new ObjectBoolean(left_side > to_integer());
 }

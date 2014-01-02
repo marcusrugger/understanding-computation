@@ -27,12 +27,12 @@ public:
 
   /* Operator */
 
-  virtual ObjectBoolean *operator_boolean_not(void) = 0;
-  virtual ObjectBoolean *operator_boolean_or(IOperable *right_side) = 0;
-  virtual ObjectBoolean *operator_boolean_and(IOperable *right_side) = 0;
-  virtual ObjectBoolean *operator_is_equal(IOperable *right_side) = 0;
-  virtual ObjectBoolean *operator_is_less_than(IOperable *right_side) = 0;
-  virtual ObjectBoolean *operator_is_greater_than(IOperable *right_side) = 0;
+  virtual IOperable *operator_boolean_not(void) = 0;
+  virtual IOperable *operator_boolean_or(IOperable *right_side) = 0;
+  virtual IOperable *operator_boolean_and(IOperable *right_side) = 0;
+  virtual IOperable *operator_is_equal(IOperable *right_side) = 0;
+  virtual IOperable *operator_is_less_than(IOperable *right_side) = 0;
+  virtual IOperable *operator_is_greater_than(IOperable *right_side) = 0;
   virtual IOperable *operator_add(IOperable *right_side) = 0;
   virtual IOperable *operator_subtract(IOperable *right_side) = 0;
   virtual IOperable *operator_multiply(IOperable *right_side) = 0;
@@ -46,16 +46,16 @@ protected:
 
   /* bool dispatchers */
 
-  virtual ObjectBoolean *dispatch_boolean_or(bool left_side) = 0;
-  virtual ObjectBoolean *dispatch_boolean_and(bool left_side) = 0;
-  virtual ObjectBoolean *dispatch_is_equal(bool left_side) = 0;
+  virtual IOperable *dispatch_boolean_or(bool left_side) = 0;
+  virtual IOperable *dispatch_boolean_and(bool left_side) = 0;
+  virtual IOperable *dispatch_is_equal(bool left_side) = 0;
 
 
   /* integer dispatchers */
 
-  virtual ObjectBoolean *dispatch_is_equal(int left_side) = 0;
-  virtual ObjectBoolean *dispatch_is_less_than(int left_side) = 0;
-  virtual ObjectBoolean *dispatch_is_greater_than(int left_side) = 0;
+  virtual IOperable *dispatch_is_equal(int left_side) = 0;
+  virtual IOperable *dispatch_is_less_than(int left_side) = 0;
+  virtual IOperable *dispatch_is_greater_than(int left_side) = 0;
   virtual IOperable *dispatch_add(int left_side) = 0;
   virtual IOperable *dispatch_subtract(int left_side) = 0;
   virtual IOperable *dispatch_multiply(int left_side) = 0;
