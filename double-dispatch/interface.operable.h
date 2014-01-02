@@ -12,6 +12,13 @@ public:
 
   virtual ~IOperable(void) {}
 
+  /* To primitives */
+
+  virtual std::string to_string(void) = 0;
+  virtual bool to_boolean(void) = 0;
+  virtual int to_integer(void) = 0;
+
+
   /* Converters */
 
   virtual ObjectBoolean *as_boolean(void) = 0;

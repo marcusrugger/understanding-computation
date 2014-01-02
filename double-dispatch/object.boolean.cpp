@@ -26,12 +26,6 @@ bool ObjectBoolean::to_boolean(void)
 }
 
 
-int ObjectBoolean::to_integer(void)
-{
-  return 0;
-}
-
-
 IOperable *ObjectBoolean::evaluate(environment *env)
 {
   return new ObjectBoolean(this);

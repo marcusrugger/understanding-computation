@@ -2,10 +2,10 @@
 #include <memory>
 #include <stdexcept>
 #include <sstream>
+#include <iostream>
 
 #include "interface.evaluable.h"
 #include "interface.operable.h"
-#include "interface.object.h"
 #include "object.boolean.h"
 #include "object.integer.h"
 #include "operator.boolean_or.h"
@@ -26,6 +26,10 @@ void should_eq(bool test, bool value, std::string description)
     ss << description << ": was (" << bool_to_string(test) << "), should be (" << bool_to_string(value) << ")";
     throw std::runtime_error(ss.str());
   }
+  else
+  {
+    std::cout << description << ": success\n";
+  }
 }
 
 
@@ -36,6 +40,10 @@ void should_eq(int test, int value, std::string description)
     std::ostringstream ss;
     ss << description << ": was (" << test << "), should be (" << value << ")";
     throw std::runtime_error(ss.str());
+  }
+  else
+  {
+    std::cout << description << ": success\n";
   }
 }
 
@@ -49,9 +57,7 @@ int test_add_with_integers(int x, int y)
 
   std::unique_ptr<IEvaluable> expression(new OperatorAdd(x_value.release(), y_value.release()));
 
-  std::unique_ptr<IObject> result(dynamic_cast<IObject *>(expression->evaluate(&env)));
-
-  printf("test_add_with_integers: %s\n", result->to_string().c_str());
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
   return result->to_integer();
 }
 
@@ -65,9 +71,7 @@ bool test_boolean_or(bool x, bool y)
 
   std::unique_ptr<IEvaluable> expression(new OperatorBooleanOr(x_value.release(), y_value.release()));
 
-  std::unique_ptr<IObject> result(dynamic_cast<IObject *>(expression->evaluate(&env)));
-
-  printf("test_boolean_or: %s\n", result->to_string().c_str());
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
   return result->to_boolean();
 }
 
@@ -81,9 +85,7 @@ bool test_boolean_or_with_integers(int x, int y)
 
   std::unique_ptr<IEvaluable> expression(new OperatorBooleanOr(x_value.release(), y_value.release()));
 
-  std::unique_ptr<IObject> result(dynamic_cast<IObject *>(expression->evaluate(&env)));
-
-  printf("test_boolean_or_with_integers: %s\n", result->to_string().c_str());
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
   return result->to_boolean();
 }
 

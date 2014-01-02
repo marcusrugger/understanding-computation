@@ -10,6 +10,18 @@ class ImplementOperable : public IOperable
 {
 public:
 
+  /* To primitives */
+
+  virtual std::string to_string(void)
+  { throw std::runtime_error("to_string is not supported"); }
+
+  virtual bool to_boolean(void)
+  { throw std::runtime_error("to_booolean is not supported"); }
+
+  virtual int to_integer(void)
+  { throw std::runtime_error("to_integer is not supported"); }
+
+
   /* Converters */
 
   virtual ObjectBoolean *as_boolean(void)

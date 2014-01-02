@@ -4,12 +4,10 @@
 
 #include "implement.operable.h"
 #include "interface.evaluable.h"
-#include "interface.object.h"
 
 
 class ObjectBoolean : public ImplementOperable,
-                      public IEvaluable,
-                      public IObject
+                      public IEvaluable
 {
 private:
 
@@ -29,19 +27,15 @@ public:
   { return !_value; }
 
 
-public: // IObject
-
-  virtual std::string to_string(void);
-  virtual bool to_boolean(void);
-  virtual int to_integer(void);
-
-
 public: // IEvaluable
 
   virtual IOperable *evaluate(environment *env);
 
 
 public: // IOperable
+
+  virtual std::string to_string(void);
+  virtual bool to_boolean(void);
 
   virtual ObjectBoolean *as_boolean(void);
 
