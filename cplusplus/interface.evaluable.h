@@ -11,7 +11,7 @@ class IEvaluable
 {
 public:
 
-  typedef std::map<std::string, ICastable *> environment;
+  typedef std::map<std::string, IOperable *> environment;
 
   virtual ~IEvaluable(void) {}
 

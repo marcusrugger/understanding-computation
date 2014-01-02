@@ -58,21 +58,21 @@ ObjectBoolean *ObjectInteger::operator_boolean_not(void)
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_or(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_boolean_or(IOperable *right_side)
 {
   std::unique_ptr<ObjectBoolean> left(as_boolean());
   return left->operator_boolean_or(right_side);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_boolean_and(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_boolean_and(IOperable *right_side)
 {
   std::unique_ptr<ObjectBoolean> left(as_boolean());
   return left->operator_boolean_and(right_side);
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_equal(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_equal(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -82,7 +82,7 @@ ObjectBoolean *ObjectInteger::operator_is_equal(ICastable *right_side)
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_less_than(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_less_than(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -92,7 +92,7 @@ ObjectBoolean *ObjectInteger::operator_is_less_than(ICastable *right_side)
 }
 
 
-ObjectBoolean *ObjectInteger::operator_is_greater_than(ICastable *right_side)
+ObjectBoolean *ObjectInteger::operator_is_greater_than(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -102,7 +102,7 @@ ObjectBoolean *ObjectInteger::operator_is_greater_than(ICastable *right_side)
 }
 
 
-IOperable *ObjectInteger::operator_add(ICastable *right_side)
+IOperable *ObjectInteger::operator_add(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -112,7 +112,7 @@ IOperable *ObjectInteger::operator_add(ICastable *right_side)
 }
 
 
-IOperable *ObjectInteger::operator_subtract(ICastable *right_side)
+IOperable *ObjectInteger::operator_subtract(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -122,7 +122,7 @@ IOperable *ObjectInteger::operator_subtract(ICastable *right_side)
 }
 
 
-IOperable *ObjectInteger::operator_multiply(ICastable *right_side)
+IOperable *ObjectInteger::operator_multiply(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
@@ -132,7 +132,7 @@ IOperable *ObjectInteger::operator_multiply(ICastable *right_side)
 }
 
 
-IOperable *ObjectInteger::operator_divide(ICastable *right_side)
+IOperable *ObjectInteger::operator_divide(IOperable *right_side)
 {
   std::unique_ptr<ObjectInteger> right(right_side->as_integer());
   if (right.get() == NULL)
