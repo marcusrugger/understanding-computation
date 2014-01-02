@@ -1,3 +1,4 @@
 *.o
-test.expressions
+test.expressions.simple
+test.expressions.complex
 
