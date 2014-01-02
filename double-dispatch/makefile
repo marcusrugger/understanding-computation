@@ -3,13 +3,14 @@ CC=g++
 CFLAGS=-c -O3 -std=c++11
 LDFLAGS=-lncurses
 
-SOURCES=	program.cpp								\
-					operator.boolean_or.cpp		\
-					operator.boolean_and.cpp	\
-					operator.is_equal.cpp			\
-					operator.is_less_than.cpp	\
-					operator.add.cpp					\
-					object.boolean.cpp				\
+SOURCES=	program.cpp										\
+					operator.boolean_or.cpp				\
+					operator.boolean_and.cpp			\
+					operator.is_equal.cpp					\
+					operator.is_less_than.cpp			\
+					operator.is_greater_than.cpp	\
+					operator.add.cpp							\
+					object.boolean.cpp						\
 					object.integer.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
