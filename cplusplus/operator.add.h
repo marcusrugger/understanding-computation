@@ -8,8 +8,10 @@ class OperatorAdd : public IEvaluable
 {
 private:
 
-  IEvaluable *_left_operand;
-  IEvaluable *_right_operand;
+  std::unique_ptr<IEvaluable> _left_operand;
+  std::unique_ptr<IEvaluable> _right_operand;
+
+
 public:
 
   OperatorAdd(IEvaluable *left, IEvaluable *right);

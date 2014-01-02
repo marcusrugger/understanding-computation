@@ -27,20 +27,20 @@ ObjectBoolean *ObjectBoolean::operator_boolean_not(void)
 
 ObjectBoolean *ObjectBoolean::operator_boolean_or(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(dynamic_cast<ObjectBoolean *>(right_side));
-  return new ObjectBoolean(_value || right->_value);
+  ObjectBoolean right(dynamic_cast<ObjectBoolean *>(right_side));
+  return new ObjectBoolean(_value || right._value);
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_boolean_and(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(dynamic_cast<ObjectBoolean *>(right_side));
-  return new ObjectBoolean(_value && right->_value);
+  ObjectBoolean right(dynamic_cast<ObjectBoolean *>(right_side));
+  return new ObjectBoolean(_value && right._value);
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_is_equal(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(dynamic_cast<ObjectBoolean *>(right_side));
-  return new ObjectBoolean(_value == right->_value);
+  ObjectBoolean right(dynamic_cast<ObjectBoolean *>(right_side));
+  return new ObjectBoolean(_value == right._value);
 }
