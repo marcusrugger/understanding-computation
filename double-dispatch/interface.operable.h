@@ -37,20 +37,14 @@ protected:
   friend class ObjectBoolean;
   friend class ObjectInteger;
 
-  /* bool operators */
+  /* bool dispatchers */
 
   virtual ObjectBoolean *dispatch_boolean_or(bool left_side) = 0;
   virtual ObjectBoolean *dispatch_boolean_and(bool left_side) = 0;
   virtual ObjectBoolean *dispatch_is_equal(bool left_side) = 0;
-  virtual ObjectBoolean *dispatch_is_less_than(bool left_side) = 0;
-  virtual ObjectBoolean *dispatch_is_greater_than(bool left_side) = 0;
-  virtual IOperable *dispatch_add(bool left_side) = 0;
-  virtual IOperable *dispatch_subtract(bool left_side) = 0;
-  virtual IOperable *dispatch_multiply(bool left_side) = 0;
-  virtual IOperable *dispatch_divide(bool left_side) = 0;
 
 
-  /* integer operators */
+  /* integer dispatchers */
 
   virtual ObjectBoolean *dispatch_is_equal(int left_side) = 0;
   virtual ObjectBoolean *dispatch_is_less_than(int left_side) = 0;

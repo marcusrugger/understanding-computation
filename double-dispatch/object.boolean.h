@@ -51,6 +51,13 @@ public: // IOperable
   virtual ObjectBoolean *operator_is_equal(IOperable *right_side);
 
 
+protected:  // IOperable dispatchers
+
+  virtual ObjectBoolean *dispatch_boolean_or(bool left_side);
+  virtual ObjectBoolean *dispatch_boolean_and(bool left_side);
+  virtual ObjectBoolean *dispatch_is_equal(bool left_side);
+
+
 };
 
 

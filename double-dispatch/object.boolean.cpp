@@ -52,29 +52,37 @@ ObjectBoolean *ObjectBoolean::operator_boolean_not(void)
 
 ObjectBoolean *ObjectBoolean::operator_boolean_or(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
-  if (right.get() == NULL)
-    throw std::runtime_error("ObjectBoolean::operator_boolean_or: incompatible types");
-  
-  return new ObjectBoolean(_value || right->_value);
+  return right_side->dispatch_boolean_or(to_boolean());
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_boolean_and(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
-  if (right.get() == NULL)
-    throw std::runtime_error("ObjectBoolean::operator_boolean_and: incompatible types");
-  
-  return new ObjectBoolean(_value && right->_value);
+  return right_side->dispatch_boolean_and(to_boolean());
 }
 
 
 ObjectBoolean *ObjectBoolean::operator_is_equal(IOperable *right_side)
 {
-  std::unique_ptr<ObjectBoolean> right(right_side->as_boolean());
-  if (right.get() == NULL)
-    throw std::runtime_error("ObjectBoolean::operator_is_equal: incompatible types");
+  return right_side->dispatch_is_equal(to_boolean());
+}
 
-  return new ObjectBoolean(_value == right->_value);
+
+/* dispatchers */
+
+ObjectBoolean *ObjectBoolean::dispatch_boolean_or(bool left_side)
+{
+  return new ObjectBoolean(left_side || to_boolean());
+}
+
+
+ObjectBoolean *ObjectBoolean::dispatch_boolean_and(bool left_side)
+{
+  return new ObjectBoolean(left_side && to_boolean());
+}
+
+
+ObjectBoolean *ObjectBoolean::dispatch_is_equal(bool left_side)
+{
+  return new ObjectBoolean(left_side && to_boolean());
 }
