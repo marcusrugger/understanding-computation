@@ -7,6 +7,7 @@ SOURCES=	program.cpp								\
 					operator.boolean_or.cpp		\
 					operator.boolean_and.cpp	\
 					operator.is_equal.cpp			\
+					operator.is_less_than.cpp	\
 					operator.add.cpp					\
 					object.boolean.cpp				\
 					object.integer.cpp

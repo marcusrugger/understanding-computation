@@ -11,6 +11,7 @@
 #include "operator.boolean_or.h"
 #include "operator.boolean_and.h"
 #include "operator.is_equal.h"
+#include "operator.is_less_than.h"
 #include "operator.add.h"
 
 
@@ -193,6 +194,19 @@ bool test_is_equal(int x, int y)
 }
 
 
+bool test_is_less_than(int x, int y)
+{
+  IEvaluable::environment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
+  std::unique_ptr<IEvaluable> expression(new OperatorIsLessThan(x_value.release(), y_value.release()));
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_boolean();
+}
+
+
 int main(int argc, char **argv)
 {
   printf("Hello world!\n");
@@ -253,6 +267,11 @@ int main(int argc, char **argv)
   should_eq(test_is_equal(3, 5), false, "is equal (3, 5)");
   should_eq(test_is_equal(3, 3), true, "is equal (3, 3)");
   should_eq(test_is_equal(5, 5), true, "is equal (5, 5)");
+
+  should_eq(test_is_less_than(0, 0), false, "is less than (0, 0)");
+  should_eq(test_is_less_than(0, 5), true, "is less than (0, 5)");
+  should_eq(test_is_less_than(3, 0), false, "is less than (3, 0)");
+  should_eq(test_is_less_than(3, 5), true, "is less than (3, 5)");
 
   printf("Goodbye, cruel world.\n");
 }
