@@ -33,6 +33,9 @@ public:
 
   /* IOperable operators */
 
+  virtual IOperable *operator_assign(IOperable *right_side)
+  { throw std::runtime_error("operator_assign is not supported"); }
+
   virtual IOperable *operator_boolean_not(void)
   { throw std::runtime_error("operator_not is not supported"); }
 

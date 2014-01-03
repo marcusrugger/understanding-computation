@@ -34,6 +34,8 @@ public: // IEvaluable
 
 public: // IOperable
 
+  virtual IOperable *clone(void);
+
   virtual std::string to_string(void);
   virtual bool to_boolean(void);
 

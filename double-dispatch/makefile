@@ -5,6 +5,8 @@ LDFLAGS=-lncurses
 
 LIBRARY=	object.boolean.cpp						\
 					object.integer.cpp						\
+					object.variable.cpp						\
+					operator.assign.cpp						\
 					operator.boolean_or.cpp				\
 					operator.boolean_and.cpp			\
 					operator.is_equal.cpp					\

@@ -28,6 +28,12 @@ bool ObjectBoolean::to_boolean(void)
 
 IOperable *ObjectBoolean::evaluate(environment *env)
 {
+  return clone();
+}
+
+
+IOperable *ObjectBoolean::clone(void)
+{
   return new ObjectBoolean(this);
 }
 

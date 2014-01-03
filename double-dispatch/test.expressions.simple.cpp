@@ -8,6 +8,8 @@
 #include "interface.operable.h"
 #include "object.boolean.h"
 #include "object.integer.h"
+#include "object.variable.h"
+#include "operator.assign.h"
 #include "operator.boolean_or.h"
 #include "operator.boolean_and.h"
 #include "operator.is_equal.h"
@@ -263,6 +265,24 @@ bool test_is_greater_than(int x, int y)
 }
 
 
+int test_assign(int x, int y)
+{
+  IEvaluable::environment env;
+  IEvaluable::environment_key var_name("test_result");
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
+  std::unique_ptr<IEvaluable> add_expression(new OperatorAdd(x_value.release(), y_value.release()));
+
+  std::unique_ptr<IEvaluable> var(new ObjectVariable(var_name));
+  std::unique_ptr<IEvaluable> expression(new OperatorAssign(var.release(), add_expression.release()));
+
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return env.at(var_name)->to_integer();
+}
+
+
 int main(int argc, char **argv)
 {
   printf("Hello world!\n");
@@ -349,6 +369,8 @@ int main(int argc, char **argv)
   should_eq(test_is_greater_than(3, 0), true, "is greater than (3, 0)");
   should_eq(test_is_greater_than(3, 5), false, "is greater than (3, 5)");
   should_eq(test_is_greater_than(5, 3), true, "is greater than (5, 3)");
+
+  should_eq(test_assign(3, 5), 8, "variable = 3 + 5");
 
   printf("Goodbye, cruel world.\n");
 }

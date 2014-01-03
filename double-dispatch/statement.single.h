@@ -20,7 +20,7 @@ public: // IStatement
 
   virtual IEvaluable::environment *execute(IEvaluable::environment *env)
   {
-    (*env)[KEY_LAST_RESULT] = _expression->evaluate(env);
+    (*env)[KEY_LAST_RESULT].reset(_expression->evaluate(env));
     return env;
   }
 

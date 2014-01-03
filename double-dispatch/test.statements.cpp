@@ -54,7 +54,7 @@ void test_pair(void)
   IEvaluable::environment env;
   IEvaluable::environment *result(statement->execute(&env));
 
-  IOperable *last_result((*result)[IStatement::KEY_LAST_RESULT]);
+  IOperable *last_result(result->at(IStatement::KEY_LAST_RESULT).get());
   printf("test_pair: last result: %d\n", last_result->to_integer());
 }
 
@@ -69,7 +69,7 @@ void test_if(bool flag)
   IEvaluable::environment env;
   IEvaluable::environment *result(statement->execute(&env));
 
-  IOperable *last_result((*result)[IStatement::KEY_LAST_RESULT]);
+  IOperable *last_result(result->at(IStatement::KEY_LAST_RESULT).get());
   printf("test_if: last result: %d\n", last_result->to_integer());
 }
 

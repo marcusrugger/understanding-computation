@@ -12,6 +12,8 @@ public:
 
   virtual ~IOperable(void) {}
 
+  virtual IOperable *clone(void) = 0;
+
   /* To primitives */
 
   virtual std::string to_string(void) = 0;
@@ -26,6 +28,8 @@ public:
 
 
   /* Operator */
+
+  virtual IOperable *operator_assign(IOperable *right_side) = 0;
 
   virtual IOperable *operator_boolean_not(void) = 0;
   virtual IOperable *operator_boolean_or(IOperable *right_side) = 0;

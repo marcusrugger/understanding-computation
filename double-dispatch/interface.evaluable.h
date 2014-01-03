@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 #include "interface.operable.h"
 
@@ -11,7 +12,8 @@ class IEvaluable
 {
 public:
 
-  typedef std::map<std::string, IOperable *> environment;
+  typedef std::string environment_key;
+  typedef std::map<std::string, std::unique_ptr<IOperable>> environment;
 
   virtual ~IEvaluable(void) {}
 

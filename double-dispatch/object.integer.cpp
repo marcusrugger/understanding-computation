@@ -35,6 +35,12 @@ int ObjectInteger::to_integer(void)
 
 IOperable *ObjectInteger::evaluate(environment *env)
 {
+  return clone();
+}
+
+
+IOperable *ObjectInteger::clone(void)
+{
   return new ObjectInteger(this);
 }
 

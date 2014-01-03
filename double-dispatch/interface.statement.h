@@ -9,7 +9,7 @@ class IStatement
 {
 public:
 
-  static const std::string KEY_LAST_RESULT;
+  static const IEvaluable::environment_key KEY_LAST_RESULT;
 
   virtual ~IStatement(void) {}
 
