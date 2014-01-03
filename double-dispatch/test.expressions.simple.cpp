@@ -16,6 +16,7 @@
 #include "operator.add.h"
 #include "operator.subtract.h"
 #include "operator.multiply.h"
+#include "operator.divide.h"
 
 
 std::string bool_to_string(bool value)
@@ -87,6 +88,19 @@ int test_multiply(int x, int y)
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
   std::unique_ptr<IEvaluable> expression(new OperatorMultiply(x_value.release(), y_value.release()));
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_integer();
+}
+
+
+int test_divide(int x, int y)
+{
+  IEvaluable::environment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
+  std::unique_ptr<IEvaluable> expression(new OperatorDivide(x_value.release(), y_value.release()));
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
 
   return result->to_integer();
@@ -267,6 +281,11 @@ int main(int argc, char **argv)
   should_eq(test_multiply(0, 5),  0, "Multiply 0 * 5");
   should_eq(test_multiply(3, 0),  0, "Multiply 3 * 0");
   should_eq(test_multiply(3, 5), 15, "Multiply 3 * 5");
+
+  should_eq(test_divide(4, 2), 2, "Divide 4 / 2");
+  should_eq(test_divide(9, 3), 3, "Divide 9 / 3");
+  should_eq(test_divide(7, 2), 3, "Divide 7 / 2");
+  should_eq(test_divide(7, 5), 1, "Divide 7 / 5");
 
   should_eq(test_boolean_or(false, false), false, "boolean or (false, false)");
   should_eq(test_boolean_or(false, true), true, "boolean or (false, true)");

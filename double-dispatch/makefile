@@ -12,7 +12,8 @@ LIBRARY=	object.boolean.cpp						\
 					operator.is_greater_than.cpp	\
 					operator.add.cpp							\
 					operator.subtract.cpp					\
-					operator.multiply.cpp
+					operator.multiply.cpp					\
+					operator.divide.cpp
 
 
 TEST_EXPRESSIONS_SIMPLE=test.expressions.simple

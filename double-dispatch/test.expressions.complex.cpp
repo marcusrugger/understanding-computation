@@ -16,6 +16,7 @@
 #include "operator.add.h"
 #include "operator.subtract.h"
 #include "operator.multiply.h"
+#include "operator.divide.h"
 
 
 std::string bool_to_string(bool value)
@@ -108,6 +109,12 @@ IEvaluable *create_multiply(int x, int y)
 }
 
 
+IEvaluable *create_divide(int x, int y)
+{
+  return new OperatorDivide(create_integer(x), create_integer(y));
+}
+
+
 IEvaluable *create_complex_add(int a, int b, int c, int d)
 {
   return new OperatorAdd(create_multiply(a, b), create_multiply(c, d));
@@ -123,6 +130,12 @@ IEvaluable *create_complex_subtract(int a, int b, int c, int d)
 IEvaluable *create_complex_multiply(int a, int b, int c, int d)
 {
   return new OperatorMultiply(create_add(a, b), create_add(c, d));
+}
+
+
+IEvaluable *create_complex_divide(int a, int b, int c, int d)
+{
+  return new OperatorDivide(create_multiply(a, b), create_multiply(c, d));
 }
 
 
@@ -155,6 +168,9 @@ int main(int argc, char **argv)
 
   expression.reset(create_complex_multiply(1, 2, 3, 4));
   should_eq(test_integer_expression(expression.get()), 21, "(1 + 2) * (3 + 4)");
+
+  expression.reset(create_complex_divide(4, 3, 2, 1));
+  should_eq(test_integer_expression(expression.get()), 6, "(4 * 3) / (2 * 1)");
 
   expression.reset(create_complex_or(true, false, false, true));
   should_eq(test_boolean_expression(expression.get()), false, "(true && false) || (false && true)");
