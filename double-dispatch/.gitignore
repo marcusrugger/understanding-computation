@@ -1,4 +1,5 @@
 *.o
 test.expressions.simple
 test.expressions.complex
+test.statements
 
