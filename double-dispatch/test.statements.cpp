@@ -21,6 +21,7 @@
 #include "statement.single.h"
 #include "statement.pair.h"
 #include "statement.if.h"
+#include "statement.while.h"
 
 
 const std::string IStatement::KEY_LAST_RESULT = "last_result";
@@ -70,6 +71,11 @@ void test_if(bool flag)
 
   IOperable *last_result((*result)[IStatement::KEY_LAST_RESULT]);
   printf("test_if: last result: %d\n", last_result->to_integer());
+}
+
+
+void test_while(void)
+{
 }
 
 
