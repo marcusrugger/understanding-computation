@@ -284,6 +284,25 @@ int test_assign(int x, int y)
 }
 
 
+int test_variable(int x, int y)
+{
+  MachineEnvironment env;
+  IEnvironment::map_key var_x("x");
+  IEnvironment::map_key var_y("y");
+
+  env.map()[var_x].reset(new ObjectInteger(x));
+  env.map()[var_y].reset(new ObjectInteger(y));
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectVariable(var_x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectVariable(var_y));
+  std::unique_ptr<IEvaluable> expression(new OperatorAdd(x_value.release(), y_value.release()));
+
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_integer();
+}
+
+
 int main(int argc, char **argv)
 {
   printf("Hello world!\n");
@@ -372,6 +391,7 @@ int main(int argc, char **argv)
   should_eq(test_is_greater_than(5, 3), true, "is greater than (5, 3)");
 
   should_eq(test_assign(3, 5), 8, "variable = 3 + 5");
+  should_eq(test_variable(13, 17), 30, "x + y");
 
   printf("Goodbye, cruel world.\n");
 }
