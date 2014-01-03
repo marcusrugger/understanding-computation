@@ -16,6 +16,7 @@ LIBRARY=	object.boolean.cpp						\
 					operator.subtract.cpp					\
 					operator.multiply.cpp					\
 					operator.divide.cpp						\
+					operator.push.cpp							\
 					machine.environment.cpp
 
 

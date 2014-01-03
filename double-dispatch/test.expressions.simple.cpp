@@ -19,6 +19,7 @@
 #include "operator.subtract.h"
 #include "operator.multiply.h"
 #include "operator.divide.h"
+#include "operator.push.h"
 #include "machine.environment.h"
 
 
@@ -303,6 +304,21 @@ int test_variable(int x, int y)
 }
 
 
+int test_push(int x)
+{
+  MachineEnvironment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> expression(new OperatorPush(x_value.release()));
+
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+  std::unique_ptr<IOperable> value(env.stack().top()->clone());
+  env.stack().pop();
+
+  return value->to_integer();
+}
+
+
 int main(int argc, char **argv)
 {
   printf("Hello world!\n");
@@ -392,6 +408,8 @@ int main(int argc, char **argv)
 
   should_eq(test_assign(3, 5), 8, "variable = 3 + 5");
   should_eq(test_variable(13, 17), 30, "x + y");
+
+  should_eq(test_push(5), 5, "push(5)");
 
   printf("Goodbye, cruel world.\n");
 }
