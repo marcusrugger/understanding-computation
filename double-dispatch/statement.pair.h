@@ -9,21 +9,26 @@ class StatementPair : public IStatement
 {
 private:
 
-  std::unique_ptr<IEvaluable> _first;
-  std::unique_ptr<IEvaluable> _second;
+  std::unique_ptr<IStatement> _first_statement;
+  std::unique_ptr<IStatement> _second_statement;
+  
 
 public:
 
-  StatementPair(IEvaluable *first, IEvaluable *second) : _first(first), _second(second) {}
+  StatementPair(IEvaluable *first, IEvaluable *second)
+  : _first_statement(new StatementSingle(first)), _second_statement(new StatementSingle(second))
+  {}
+
+  StatementPair(IStatement *first, IStatement *second)
+  : _first_statement(first), _second_statement(second)
+  {}
 
 
 public: // IStatement
 
   virtual IEvaluable::environment *execute(IEvaluable::environment *env)
   {
-    (*env)[KEY_LAST_RESULT] = _first->evaluate(env);
-    (*env)[KEY_LAST_RESULT] = _second->evaluate(env);
-    return env;
+    return _second_statement->execute(_first_statement->execute(env));
   }
 
 };
