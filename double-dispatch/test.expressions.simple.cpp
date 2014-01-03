@@ -14,6 +14,7 @@
 #include "operator.is_less_than.h"
 #include "operator.is_greater_than.h"
 #include "operator.add.h"
+#include "operator.subtract.h"
 #include "operator.multiply.h"
 
 
@@ -60,6 +61,19 @@ int test_add(int x, int y)
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
   std::unique_ptr<IEvaluable> expression(new OperatorAdd(x_value.release(), y_value.release()));
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+
+  return result->to_integer();
+}
+
+
+int test_subtract(int x, int y)
+{
+  IEvaluable::environment env;
+
+  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
+  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
+  std::unique_ptr<IEvaluable> expression(new OperatorSubtract(x_value.release(), y_value.release()));
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
 
   return result->to_integer();
@@ -244,10 +258,15 @@ int main(int argc, char **argv)
   should_eq(test_add(3, 0), 3, "Add 3 + 0");
   should_eq(test_add(3, 5), 8, "Add 3 + 5");
 
-  should_eq(test_multiply(0, 0),  0, "Multiply 0 + 0");
-  should_eq(test_multiply(0, 5),  0, "Multiply 0 + 5");
-  should_eq(test_multiply(3, 0),  0, "Multiply 3 + 0");
-  should_eq(test_multiply(3, 5), 15, "Multiply 3 + 5");
+  should_eq(test_subtract(0, 0),  0, "Subtract 0 - 0");
+  should_eq(test_subtract(0, 5), -5, "Subtract 0 - 5");
+  should_eq(test_subtract(3, 0),  3, "Subtract 3 - 0");
+  should_eq(test_subtract(3, 5), -2, "Subtract 3 - 5");
+
+  should_eq(test_multiply(0, 0),  0, "Multiply 0 * 0");
+  should_eq(test_multiply(0, 5),  0, "Multiply 0 * 5");
+  should_eq(test_multiply(3, 0),  0, "Multiply 3 * 0");
+  should_eq(test_multiply(3, 5), 15, "Multiply 3 * 5");
 
   should_eq(test_boolean_or(false, false), false, "boolean or (false, false)");
   should_eq(test_boolean_or(false, true), true, "boolean or (false, true)");

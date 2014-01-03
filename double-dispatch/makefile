@@ -11,6 +11,7 @@ LIBRARY=	object.boolean.cpp						\
 					operator.is_less_than.cpp			\
 					operator.is_greater_than.cpp	\
 					operator.add.cpp							\
+					operator.subtract.cpp					\
 					operator.multiply.cpp
 
 

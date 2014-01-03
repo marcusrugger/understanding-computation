@@ -14,6 +14,7 @@
 #include "operator.is_less_than.h"
 #include "operator.is_greater_than.h"
 #include "operator.add.h"
+#include "operator.subtract.h"
 #include "operator.multiply.h"
 
 
@@ -95,6 +96,12 @@ IEvaluable *create_add(int x, int y)
 }
 
 
+IEvaluable *create_subtract(int x, int y)
+{
+  return new OperatorSubtract(create_integer(x), create_integer(y));
+}
+
+
 IEvaluable *create_multiply(int x, int y)
 {
   return new OperatorMultiply(create_integer(x), create_integer(y));
@@ -104,6 +111,12 @@ IEvaluable *create_multiply(int x, int y)
 IEvaluable *create_complex_add(int a, int b, int c, int d)
 {
   return new OperatorAdd(create_multiply(a, b), create_multiply(c, d));
+}
+
+
+IEvaluable *create_complex_subtract(int a, int b, int c, int d)
+{
+  return new OperatorSubtract(create_add(a, b), create_add(c, d));
 }
 
 
@@ -134,17 +147,26 @@ int main(int argc, char **argv)
   printf("Hello world!\n");
   std::unique_ptr<IEvaluable> expression;
 
-  expression.reset(create_complex_multiply(1, 2, 3, 4));
-  should_eq(test_integer_expression(expression.get()), 21, "(1 + 2) * (3 + 4)");
-
   expression.reset(create_complex_add(1, 2, 3, 4));
   should_eq(test_integer_expression(expression.get()), 14, "(1 * 2) + (3 * 4)");
+
+  expression.reset(create_complex_subtract(4, 3, 2, 1));
+  should_eq(test_integer_expression(expression.get()), 4, "(4 + 3) - (2 + 1)");
+
+  expression.reset(create_complex_multiply(1, 2, 3, 4));
+  should_eq(test_integer_expression(expression.get()), 21, "(1 + 2) * (3 + 4)");
 
   expression.reset(create_complex_or(true, false, false, true));
   should_eq(test_boolean_expression(expression.get()), false, "(true && false) || (false && true)");
 
+  expression.reset(create_complex_or(true, true, false, true));
+  should_eq(test_boolean_expression(expression.get()), true, "(true && true) || (false && true)");
+
   expression.reset(create_complex_and(true, false, false, true));
   should_eq(test_boolean_expression(expression.get()), true, "(true || false) && (false || true)");
+
+  expression.reset(create_complex_and(false, false, false, true));
+  should_eq(test_boolean_expression(expression.get()), false, "(false || false) && (false || true)");
 
   printf("Goodbye, cruel world.\n");
 }
