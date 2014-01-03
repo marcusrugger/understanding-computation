@@ -2,35 +2,27 @@
 #include <memory>
 #include <stdexcept>
 #include "object.variable.h"
+#include "interface.operable.h"
 
 
-ObjectVariable::ObjectVariable(IEvaluable::environment_key name)
-: _name(name),
-  _environment(NULL)
+ObjectVariable::ObjectVariable(IEnvironment::map_key name)
+: _name(name)
 {}
 
 
 ObjectVariable::ObjectVariable(ObjectVariable *pobj)
-: _name(pobj->_name),
-  _environment(pobj->_environment)
+: _name(pobj->_name)
 {}
 
 
-IOperable *ObjectVariable::evaluate(environment *env)
+IOperable *ObjectVariable::evaluate(IEnvironment *env)
 {
-  _environment = env;
-  return clone();
+  return env->map().at(_name)->clone();
 }
 
 
-IOperable *ObjectVariable::clone(void)
+IOperable *ObjectVariable::operator_assign(IEnvironment *env, IOperable *right_side)
 {
-  return new ObjectVariable(this);
-}
-
-
-IOperable *ObjectVariable::operator_assign(IOperable *right_side)
-{
-  (*_environment)[_name].reset(right_side->clone());
+  env->map()[_name].reset(right_side->clone());
   return right_side->clone();
 }

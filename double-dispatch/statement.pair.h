@@ -26,7 +26,7 @@ public:
 
 public: // IStatement
 
-  virtual IEvaluable::environment *execute(IEvaluable::environment *env)
+  virtual IEnvironment *execute(IEnvironment *env)
   {
     return _second_statement->execute(_first_statement->execute(env));
   }

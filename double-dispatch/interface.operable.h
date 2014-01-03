@@ -29,8 +29,6 @@ public:
 
   /* Operator */
 
-  virtual IOperable *operator_assign(IOperable *right_side) = 0;
-
   virtual IOperable *operator_boolean_not(void) = 0;
   virtual IOperable *operator_boolean_or(IOperable *right_side) = 0;
   virtual IOperable *operator_boolean_and(IOperable *right_side) = 0;

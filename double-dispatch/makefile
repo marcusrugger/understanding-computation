@@ -15,7 +15,8 @@ LIBRARY=	object.boolean.cpp						\
 					operator.add.cpp							\
 					operator.subtract.cpp					\
 					operator.multiply.cpp					\
-					operator.divide.cpp
+					operator.divide.cpp						\
+					machine.environment.cpp
 
 
 TEST_EXPRESSIONS_SIMPLE=test.expressions.simple

@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.multiply.h"
+#include "interface.operable.h"
 
 
 OperatorMultiply::OperatorMultiply(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorMultiply::OperatorMultiply(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorMultiply::evaluate(IEvaluable::environment *env)
+IOperable *OperatorMultiply::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

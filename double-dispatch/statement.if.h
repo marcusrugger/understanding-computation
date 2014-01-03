@@ -31,7 +31,7 @@ public:
 
 public: // IStatement
 
-  virtual IEvaluable::environment *execute(IEvaluable::environment *env)
+  virtual IEnvironment *execute(IEnvironment *env)
   {
     if (_condition->evaluate(env)->to_boolean())
       return _true_statement->execute(env);

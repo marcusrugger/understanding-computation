@@ -26,7 +26,7 @@ bool ObjectBoolean::to_boolean(void)
 }
 
 
-IOperable *ObjectBoolean::evaluate(environment *env)
+IOperable *ObjectBoolean::evaluate(IEnvironment *)
 {
   return clone();
 }

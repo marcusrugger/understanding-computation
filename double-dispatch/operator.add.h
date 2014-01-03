@@ -20,7 +20,7 @@ public:
 
 public: // IEvaluable
 
-  virtual IOperable *evaluate(IEvaluable::environment *env);
+  virtual IOperable *evaluate(IEnvironment *env);
 
 
 };

@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.boolean_and.h"
+#include "interface.operable.h"
 
 
 OperatorBooleanAnd::OperatorBooleanAnd(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorBooleanAnd::OperatorBooleanAnd(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorBooleanAnd::evaluate(IEvaluable::environment *env)
+IOperable *OperatorBooleanAnd::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

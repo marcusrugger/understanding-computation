@@ -24,7 +24,7 @@ public:
 
 public: // IStatement
 
-  virtual IEvaluable::environment *execute(IEvaluable::environment *env)
+  virtual IEnvironment *execute(IEnvironment *env)
   {
     while (_condition->evaluate(env)->to_boolean())
       _body->execute(env);

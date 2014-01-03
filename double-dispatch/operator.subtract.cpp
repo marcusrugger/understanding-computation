@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.subtract.h"
+#include "interface.operable.h"
 
 
 OperatorSubtract::OperatorSubtract(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorSubtract::OperatorSubtract(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorSubtract::evaluate(IEvaluable::environment *env)
+IOperable *OperatorSubtract::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

@@ -33,7 +33,7 @@ int ObjectInteger::to_integer(void)
 }
 
 
-IOperable *ObjectInteger::evaluate(environment *env)
+IOperable *ObjectInteger::evaluate(IEnvironment *)
 {
   return clone();
 }

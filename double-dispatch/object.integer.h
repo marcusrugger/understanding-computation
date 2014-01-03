@@ -22,7 +22,7 @@ public:
 
 public: // IEvaluable
 
-  virtual IOperable *evaluate(environment *env);
+  virtual IOperable *evaluate(IEnvironment *env);
 
 
 public: // IOperable

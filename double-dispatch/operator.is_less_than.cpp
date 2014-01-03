@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.is_less_than.h"
+#include "interface.operable.h"
 
 
 OperatorIsLessThan::OperatorIsLessThan(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorIsLessThan::OperatorIsLessThan(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorIsLessThan::evaluate(IEvaluable::environment *env)
+IOperable *OperatorIsLessThan::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

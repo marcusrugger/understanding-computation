@@ -17,6 +17,7 @@
 #include "operator.subtract.h"
 #include "operator.multiply.h"
 #include "operator.divide.h"
+#include "machine.environment.h"
 
 
 std::string bool_to_string(bool value)
@@ -141,7 +142,7 @@ IEvaluable *create_complex_divide(int a, int b, int c, int d)
 
 bool test_boolean_expression(IEvaluable *expression)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
   return result->to_boolean();
 }
@@ -149,7 +150,7 @@ bool test_boolean_expression(IEvaluable *expression)
 
 int test_integer_expression(IEvaluable *expression)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
   return result->to_integer();
 }

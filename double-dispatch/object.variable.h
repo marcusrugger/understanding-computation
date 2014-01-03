@@ -2,35 +2,33 @@
 #define __OBJECTVARIABLE_H__
 
 
-#include "implement.operable.h"
+#include "interface.assignable.h"
 #include "interface.evaluable.h"
+#include "interface.environment.h"
 
 
-class ObjectVariable : public ImplementOperable,
+class ObjectVariable : public IAssignable,
                        public IEvaluable
 {
 private:
 
-  IEvaluable::environment_key _name;
-  IEvaluable::environment *_environment;
+  IEnvironment::map_key _name;
 
 
 public:
 
-  ObjectVariable(IEvaluable::environment_key name);
+  ObjectVariable(IEnvironment::map_key name);
   ObjectVariable(ObjectVariable *pObj);
 
 
 public: // IEvaluable
 
-  virtual IOperable *evaluate(environment *env);
+  virtual IOperable *evaluate(IEnvironment *env);
 
 
-public: // IOperable
+public: // IAssignable
 
-  virtual IOperable *clone(void);
-
-  virtual IOperable *operator_assign(IOperable *right_side);
+  virtual IOperable *operator_assign(IEnvironment *env, IOperable *right_side);
 
 };
 

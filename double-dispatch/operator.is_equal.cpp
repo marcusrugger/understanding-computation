@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.is_equal.h"
+#include "interface.operable.h"
 
 
 OperatorIsEqual::OperatorIsEqual(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorIsEqual::OperatorIsEqual(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorIsEqual::evaluate(IEvaluable::environment *env)
+IOperable *OperatorIsEqual::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

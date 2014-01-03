@@ -1,5 +1,6 @@
 #include <memory>
 #include "operator.add.h"
+#include "interface.operable.h"
 
 
 OperatorAdd::OperatorAdd(IEvaluable *left, IEvaluable *right)
@@ -8,7 +9,7 @@ OperatorAdd::OperatorAdd(IEvaluable *left, IEvaluable *right)
 {}
 
 
-IOperable *OperatorAdd::evaluate(IEvaluable::environment *env)
+IOperable *OperatorAdd::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> left_result(_left_operand->evaluate(env));
   std::unique_ptr<IOperable> right_result(_right_operand->evaluate(env));

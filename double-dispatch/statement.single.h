@@ -18,9 +18,9 @@ public:
 
 public: // IStatement
 
-  virtual IEvaluable::environment *execute(IEvaluable::environment *env)
+  virtual IEnvironment *execute(IEnvironment *env)
   {
-    (*env)[KEY_LAST_RESULT].reset(_expression->evaluate(env));
+    env->map()[KEY_LAST_RESULT].reset(_expression->evaluate(env));
     return env;
   }
 

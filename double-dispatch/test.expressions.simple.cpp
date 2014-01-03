@@ -19,6 +19,7 @@
 #include "operator.subtract.h"
 #include "operator.multiply.h"
 #include "operator.divide.h"
+#include "machine.environment.h"
 
 
 std::string bool_to_string(bool value)
@@ -59,7 +60,7 @@ void should_eq(int test, int value, std::string description)
 
 int test_add(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -72,7 +73,7 @@ int test_add(int x, int y)
 
 int test_subtract(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -85,7 +86,7 @@ int test_subtract(int x, int y)
 
 int test_multiply(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -98,7 +99,7 @@ int test_multiply(int x, int y)
 
 int test_divide(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -111,7 +112,7 @@ int test_divide(int x, int y)
 
 bool test_boolean_or(bool x, bool y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
@@ -124,7 +125,7 @@ bool test_boolean_or(bool x, bool y)
 
 bool test_boolean_or(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -137,7 +138,7 @@ bool test_boolean_or(int x, int y)
 
 bool test_boolean_or(bool x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -150,7 +151,7 @@ bool test_boolean_or(bool x, int y)
 
 bool test_boolean_or(int x, bool y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
@@ -163,7 +164,7 @@ bool test_boolean_or(int x, bool y)
 
 bool test_boolean_and(bool x, bool y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
@@ -176,7 +177,7 @@ bool test_boolean_and(bool x, bool y)
 
 bool test_boolean_and(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -189,7 +190,7 @@ bool test_boolean_and(int x, int y)
 
 bool test_boolean_and(bool x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -202,7 +203,7 @@ bool test_boolean_and(bool x, int y)
 
 bool test_boolean_and(int x, bool y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
@@ -215,7 +216,7 @@ bool test_boolean_and(int x, bool y)
 
 bool test_is_equal(bool x, bool y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectBoolean(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectBoolean(y));
@@ -228,7 +229,7 @@ bool test_is_equal(bool x, bool y)
 
 bool test_is_equal(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -241,7 +242,7 @@ bool test_is_equal(int x, int y)
 
 bool test_is_less_than(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -254,7 +255,7 @@ bool test_is_less_than(int x, int y)
 
 bool test_is_greater_than(int x, int y)
 {
-  IEvaluable::environment env;
+  MachineEnvironment env;
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
@@ -267,19 +268,19 @@ bool test_is_greater_than(int x, int y)
 
 int test_assign(int x, int y)
 {
-  IEvaluable::environment env;
-  IEvaluable::environment_key var_name("test_result");
+  MachineEnvironment env;
+  IEnvironment::map_key var_name("test_result");
 
   std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
   std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
   std::unique_ptr<IEvaluable> add_expression(new OperatorAdd(x_value.release(), y_value.release()));
 
-  std::unique_ptr<IEvaluable> var(new ObjectVariable(var_name));
+  std::unique_ptr<IAssignable> var(new ObjectVariable(var_name));
   std::unique_ptr<IEvaluable> expression(new OperatorAssign(var.release(), add_expression.release()));
 
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
 
-  return env.at(var_name)->to_integer();
+  return env.map().at(var_name)->to_integer();
 }
 
 
