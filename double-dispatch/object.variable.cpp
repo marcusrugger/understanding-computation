@@ -31,6 +31,6 @@ IOperable *ObjectVariable::clone(void)
 
 IOperable *ObjectVariable::operator_assign(IOperable *right_side)
 {
-  (*_environment)[_name].reset(right_side);
+  (*_environment)[_name].reset(right_side->clone());
   return right_side->clone();
 }
