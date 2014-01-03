@@ -14,6 +14,7 @@
 #include "operator.is_less_than.h"
 #include "operator.is_greater_than.h"
 #include "operator.add.h"
+#include "operator.multiply.h"
 
 
 std::string bool_to_string(bool value)
@@ -60,11 +61,11 @@ IEvaluable *create_add(int x, int y)
 }
 
 
-IEvaluable *create_complex_add(int a, int b, int c, int d)
+IEvaluable *create_complex_multiply(int a, int b, int c, int d)
 {
   std::unique_ptr<IEvaluable> x_expression(create_add(a, b));
   std::unique_ptr<IEvaluable> y_expression(create_add(c, d));
-  return new OperatorAdd(x_expression.release(), y_expression.release());
+  return new OperatorMultiply(x_expression.release(), y_expression.release());
 }
 
 
@@ -81,8 +82,8 @@ int main(int argc, char **argv)
   printf("Hello world!\n");
   std::unique_ptr<IEvaluable> expression;
 
-  expression.reset(create_complex_add(1, 2, 3, 4));
-  should_eq(test_integer_expression(expression.get()), 10, "(1 + 2) + (3 + 4)");
+  expression.reset(create_complex_multiply(1, 2, 3, 4));
+  should_eq(test_integer_expression(expression.get()), 21, "(1 + 2) * (3 + 4)");
 
   printf("Goodbye, cruel world.\n");
 }

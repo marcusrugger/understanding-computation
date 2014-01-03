@@ -10,7 +10,8 @@ LIBRARY=	object.boolean.cpp						\
 					operator.is_equal.cpp					\
 					operator.is_less_than.cpp			\
 					operator.is_greater_than.cpp	\
-					operator.add.cpp
+					operator.add.cpp							\
+					operator.multiply.cpp
 
 
 TEST_EXPRESSIONS_SIMPLE=test.expressions.simple
