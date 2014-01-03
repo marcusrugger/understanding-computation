@@ -8,6 +8,8 @@
 #include "interface.operable.h"
 #include "object.boolean.h"
 #include "object.integer.h"
+#include "object.variable.h"
+#include "operator.assign.h"
 #include "operator.boolean_or.h"
 #include "operator.boolean_and.h"
 #include "operator.is_equal.h"
@@ -40,9 +42,40 @@ IEvaluable *create_integer(int a)
 }
 
 
+IEvaluable *create_variable(IEnvironment::map_key key)
+{
+  return new ObjectVariable(key);
+}
+
+
 IEvaluable *create_add(int x, int y)
 {
   return new OperatorAdd(create_integer(x), create_integer(y));
+}
+
+
+IEvaluable *create_decrementer(IEnvironment::map_key name)
+{
+  IEvaluable *subtract_expression;
+  {
+    IEvaluable *left = new ObjectVariable(name);
+    IEvaluable *right = new ObjectInteger(1);
+    subtract_expression = new OperatorSubtract(left, right);
+  }
+
+  IEvaluable *assign_expression;
+  {
+    IAssignable *left = new ObjectVariable(name);
+    assign_expression = new OperatorAssign(left, subtract_expression);
+  }
+
+  IEvaluable *condition;
+  {
+    IEvaluable *right = new ObjectInteger(0);
+    condition = new OperatorIsGreaterThan(assign_expression, right);
+  }
+
+  return condition;
 }
 
 
@@ -75,8 +108,21 @@ void test_if(bool flag)
 }
 
 
-void test_while(void)
+void test_while(int n)
 {
+  MachineEnvironment env;
+
+  IEnvironment::map_key name("count_down");
+
+  IStatement *while_statement;
+  {
+    IEvaluable *condition(create_decrementer(name));
+    IStatement *body(new StatementDoNothing());
+    while_statement = new StatementWhile(condition, body);
+  }
+
+  env.map()[name].reset(new ObjectInteger(n));
+  while_statement->execute(&env);
 }
 
 
@@ -87,6 +133,7 @@ int main(int argc, char **argv)
   test_pair();
   test_if(true);
   test_if(false);
+  test_while(500000);
 
   printf("Goodbye, cruel world.\n");
 }
