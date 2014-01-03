@@ -53,19 +53,71 @@ void should_eq(int test, int value, std::string description)
 }
 
 
+IEvaluable *create_boolean(bool a)
+{
+  return new ObjectBoolean(a);
+}
+
+
+IEvaluable *create_integer(int a)
+{
+  return new ObjectInteger(a);
+}
+
+
+IEvaluable *create_or(bool x, bool y)
+{
+  return new OperatorBooleanOr(create_boolean(x), create_boolean(y));
+}
+
+
+IEvaluable *create_and(bool x, bool y)
+{
+  return new OperatorBooleanAnd(create_boolean(x), create_boolean(y));
+}
+
+
+IEvaluable *create_complex_or(bool a, bool b, bool c, bool d)
+{
+  return new OperatorBooleanOr(create_and(a, b), create_and(c, d));
+}
+
+
+IEvaluable *create_complex_and(bool a, bool b, bool c, bool d)
+{
+  return new OperatorBooleanAnd(create_or(a, b), create_or(c, d));
+}
+
+
 IEvaluable *create_add(int x, int y)
 {
-  std::unique_ptr<IEvaluable> x_value(new ObjectInteger(x));
-  std::unique_ptr<IEvaluable> y_value(new ObjectInteger(y));
-  return new OperatorAdd(x_value.release(), y_value.release());
+  return new OperatorAdd(create_integer(x), create_integer(y));
+}
+
+
+IEvaluable *create_multiply(int x, int y)
+{
+  return new OperatorMultiply(create_integer(x), create_integer(y));
+}
+
+
+IEvaluable *create_complex_add(int a, int b, int c, int d)
+{
+  return new OperatorAdd(create_multiply(a, b), create_multiply(c, d));
 }
 
 
 IEvaluable *create_complex_multiply(int a, int b, int c, int d)
 {
-  std::unique_ptr<IEvaluable> x_expression(create_add(a, b));
-  std::unique_ptr<IEvaluable> y_expression(create_add(c, d));
-  return new OperatorMultiply(x_expression.release(), y_expression.release());
+  return new OperatorMultiply(create_add(a, b), create_add(c, d));
+}
+
+
+bool test_boolean_expression(IEvaluable *expression)
+{
+  IEvaluable::environment env;
+  std::unique_ptr<IOperable> result(expression->evaluate(&env));
+  return result->to_boolean();
 }
 
 
@@ -84,6 +136,15 @@ int main(int argc, char **argv)
 
   expression.reset(create_complex_multiply(1, 2, 3, 4));
   should_eq(test_integer_expression(expression.get()), 21, "(1 + 2) * (3 + 4)");
+
+  expression.reset(create_complex_add(1, 2, 3, 4));
+  should_eq(test_integer_expression(expression.get()), 14, "(1 * 2) + (3 * 4)");
+
+  expression.reset(create_complex_or(true, false, false, true));
+  should_eq(test_boolean_expression(expression.get()), false, "(true && false) || (false && true)");
+
+  expression.reset(create_complex_and(true, false, false, true));
+  should_eq(test_boolean_expression(expression.get()), true, "(true || false) && (false || true)");
 
   printf("Goodbye, cruel world.\n");
 }
