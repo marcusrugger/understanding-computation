@@ -12,6 +12,6 @@ OperatorPush::OperatorPush(IEvaluable *operand)
 IOperable *OperatorPush::evaluate(IEnvironment *env)
 {
   std::unique_ptr<IOperable> operand_result(_operand->evaluate(env));
-  env->stack().push(std::unique_ptr<IOperable> (operand_result->clone()));
+  env->stack().emplace(operand_result->clone());
   return operand_result.release();
 }

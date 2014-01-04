@@ -6,8 +6,7 @@
 #include "interface.evaluable.h"
 
 
-class ObjectInteger : public ImplementOperable,
-                      public IEvaluable
+class ObjectInteger : public ImplementOperable
 {
 private:
 

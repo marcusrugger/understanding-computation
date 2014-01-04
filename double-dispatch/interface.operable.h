@@ -2,11 +2,14 @@
 #define __IOPERABLE_H__
 
 
+#include "interface.evaluable.h"
+
+
 class ObjectBoolean;
 class ObjectInteger;
 
 
-class IOperable
+class IOperable : public IEvaluable
 {
 public:
 

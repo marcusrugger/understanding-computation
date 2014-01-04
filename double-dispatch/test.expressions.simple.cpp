@@ -332,7 +332,7 @@ int test_pull(int x, int y)
   std::unique_ptr<IEvaluable> y_push(new OperatorPush(y_value.release()));
   y_push->evaluate(&env);
 
-  std::unique_ptr<IEvaluable> expression(new OperatorAdd(new OperatorPull(), new OperatorPull()));
+  std::unique_ptr<IEvaluable> expression(new OperatorSubtract(new OperatorPull(), new OperatorPull()));
   std::unique_ptr<IOperable> result(expression->evaluate(&env));
 
   return result->to_integer();
@@ -430,7 +430,7 @@ int main(int argc, char **argv)
   should_eq(test_variable(13, 17), 30, "x + y");
 
   should_eq(test_push(5), 5, "push(5)");
-  should_eq(test_pull(3, 5), 8, "push(3); push(5); pop() + pop()");
+  should_eq(test_pull(3, 5), 2, "push(3); push(5); pop() - pop()");
 
   printf("Goodbye, cruel world.\n");
 }

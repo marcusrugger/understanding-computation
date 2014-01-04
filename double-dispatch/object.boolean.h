@@ -6,8 +6,7 @@
 #include "interface.evaluable.h"
 
 
-class ObjectBoolean : public ImplementOperable,
-                      public IEvaluable
+class ObjectBoolean : public ImplementOperable
 {
 private:
 
